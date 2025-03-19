@@ -23,6 +23,8 @@ use App\Filament\Widgets\KotaUsahaStats;
 
 class AdminPanelProvider extends PanelProvider
 {
+
+    
     
 
 
@@ -34,6 +36,7 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            
             ->default()
             ->id('admin')
             ->path('admin')
@@ -47,12 +50,9 @@ class AdminPanelProvider extends PanelProvider
             // ->brandLogo(asset('assets\images\network.png'))
             // ->favicon(asset('images/favicon.ico'))
             ->registration(false)
-            
-            
-            
-            
-            
 
+            ->font('Inter')
+            ->darkMode(false)
             ->colors([
                 'primary' => Color::Blue,
                 'secondary' => Color::Amber,
