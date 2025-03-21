@@ -25,17 +25,28 @@ class AnggotaStats extends BaseWidget
     {
         $stats = [];
 
-        // Ambil daftar kota usaha yang memiliki data
-        $data = Anggota::whereNotNull('Kota_Usaha')
-            ->selectRaw('Kota_Usaha, COUNT(*) as total')
-            ->groupBy('Kota_Usaha')
-            ->get();
+        // Daftar kota usaha tetap yang ingin selalu muncul
+        $daftarKota = [
+            'JAKARTA SELATAN',
+            'JAKARTA UTARA',
+            'JAKARTA TIMUR',
+            'JAKARTA PUSAT',
+            'JAKARTA BARAT'
+        ];
 
-        // Loop data dan buat Stat card untuk masing-masing Kota_Usaha
-        foreach ($data as $item) {
-            $stats[] = Stat::make("KOTA {$item->Kota_Usaha}", $item->total)
-                // ->description("{$item->Kota_Usaha}")
-                ->color('info')
+        // Ambil data dari database
+        $data = Anggota::selectRaw('Kota_Usaha, COUNT(*) as total')
+            ->whereNotNull('Kota_Usaha')
+            ->whereIn('Kota_Usaha', $daftarKota) // Hanya ambil data dari daftar kota
+            ->groupBy('Kota_Usaha')
+            ->pluck('total', 'Kota_Usaha')
+            ->toArray();
+
+        // Loop daftar kota usaha dan buat Stat card
+        foreach ($daftarKota as $kota) {
+            $jumlah = $data[$kota] ?? 0; // Jika tidak ada, set ke 0
+            $stats[] = Stat::make("KOTA {$kota}", $jumlah)
+                ->color($jumlah > 0 ? 'info' : 'gray')
                 ->extraAttributes(['class' => 'flex justify-center items-center text-center']);
         }
 
