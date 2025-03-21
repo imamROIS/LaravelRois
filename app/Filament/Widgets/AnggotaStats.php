@@ -21,28 +21,6 @@ class AnggotaStats extends BaseWidget
         return 3; // Pastikan bisa sejajar dalam 1 baris
     }
 
-
-
-    // protected function getCards(): array
-    // {
-    //     $stats = [];
-
-    //     // Ambil daftar kota usaha yang memiliki data
-    //     $data = Anggota::whereNotNull('Kota_Usaha')
-    //         ->selectRaw('Kota_Usaha, COUNT(*) as total')
-    //         ->groupBy('Kota_Usaha')
-    //         ->get();
-
-    //     // Loop data dan buat Stat card untuk masing-masing Kota_Usaha
-    //     foreach ($data as $item) {
-    //         $stats[] = Stat::make("KOTA {$item->Kota_Usaha}", $item->total)
-    //             ->description("{$item->Kota_Usaha}")
-    //             ->color('info');
-    //     }
-
-    //     return $stats;
-    // }
-
     protected function getCards(): array
     {
         $stats = [];

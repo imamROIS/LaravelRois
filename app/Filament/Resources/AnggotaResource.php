@@ -134,7 +134,7 @@ class AnggotaResource extends Resource
                         Select::make('Kota_Usaha')
     ->options([
         'Jakarta Utara' => 'JAKARTA UTARA',
-        'Jakarta Selatan' => 'JJAKARTA SELATAN',
+        'Jakarta Selatan' => 'JAKARTA SELATAN',
         'Jakarta Barat' => 'JAKARTA BARAT',
         'Jakarta Timur' => 'JAKARTA TIMUR',
         'Jakarta Pusat' => 'JAKARTA PUSAT',
