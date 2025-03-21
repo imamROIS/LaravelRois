@@ -82,6 +82,7 @@ class AnggotaResource extends Resource
                     ]),
 
                     Forms\Components\Section::make('Alamat Tinggal')->schema([
+                        Textarea::make('Alamat_Tinggal')->label('Alamat Tinggal')->required(),
                         // TextInput::make('Provinsi_Tinggal')->label('Provinsi Tinggal')->helperText('Nama Provinsi saja') ->required(),
                         Forms\Components\Grid::make(4)->schema([
                         // TextInput::make('Kabupaten_Tinggal')->label('Kabupaten Tinggal')->helperText('Nama Kabupaten saja') ->required(),
@@ -103,7 +104,7 @@ class AnggotaResource extends Resource
         
                         ]),
                         
-                        Textarea::make('Alamat_Tinggal')->label('Alamat Tinggal')->required(),
+                        
                     ]),
 
                 
