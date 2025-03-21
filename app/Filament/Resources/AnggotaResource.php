@@ -97,10 +97,14 @@ class AnggotaResource extends Resource
                         ->required(),
 
                         
-                        TextInput::make('Kota_Tinggal')->label('Kota Tinggal')
-                        ->datalist(Anggota::pluck('Kota_Tinggal')->unique()->toArray())
-                        ->required(),
-
+                        Select::make('Kota_Usaha')
+                        ->options([
+                                    'Jakarta Utara' => 'JAKARTA UTARA',
+                                    'Jakarta Selatan' => 'JAKARTA SELATAN',
+                                    'Jakarta Barat' => 'JAKARTA BARAT',
+                                    'Jakarta Timur' => 'JAKARTA TIMUR',
+                                    'Jakarta Pusat' => 'JAKARTA PUSAT',
+                                    ])->required(),
         
                         ]),
                         
