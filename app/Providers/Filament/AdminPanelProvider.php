@@ -24,15 +24,6 @@ use App\Filament\Widgets\KotaUsahaStats;
 class AdminPanelProvider extends PanelProvider
 {
 
-    
-    
-
-
-
-
-    
-
-
     public function panel(Panel $panel): Panel
     {
         return $panel
@@ -42,15 +33,6 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login(  )
             ->topNavigation()
-            ->registration()
-            
-            // ->darkMode()
-
-            // ->brandName('UMKM Data')
-            // ->brandLogo(asset('assets\images\network.png'))
-            // ->favicon(asset('images/favicon.ico'))
-            ->registration(false)
-
             ->font('Inter')
             ->darkMode(false)
             ->colors([
