@@ -1,14 +1,11 @@
 
 
+
 <div class=" col-span-full space-y-4">
-    <!-- Filter Form -->
-    <div  class="flex space-x-4">
-
-
     <!-- Search Form -->
     <div class="flex space-x-4 mb-4">
         <div class="flex-grow">
-            <label for="search" class="block text-sm font-medium">Search</label>
+            <label for="search" class="block text-sm font-medium">Pencarian</label>
             <div class="flex mt-1">
                 <select wire:model="searchField" id="searchField" class="border-gray-300 rounded-l-md shadow-sm">
                     <option value="all">Semua</option>
@@ -20,12 +17,20 @@
                 <input wire:model.debounce.300ms="search" wire:keydown.enter="refreshData" type="text" id="search" placeholder="Search..." class="flex-grow border-gray-300 rounded-r-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
         </div>
+        
         <div class="mt-6">
-            <button wire:click="refreshData" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+            <button wire:click="refreshData" class="search-button">
                 Search
             </button>
+            
         </div>
+
     </div>
+    <!-- Filter Form -->
+    <div  class="flex space-x-4">
+
+
+    
 <!-- Filter Tempat tinggal berdasarkan alamat pribadi -- START -->   
 
 {{-- 
@@ -149,20 +154,27 @@
     </select>
 </div>
     </div>
-                    <!-- Tombol Reset Filter -->
-                    <div>
-                        <button wire:click="resetFilters" class=" font-semibold text-blue px-4 py-2 mt-4 bg-red rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300" >
-                            Reset Filter
-                        </button>
-                    </div>
 
 <!-- Filter Tempat tinggal berdasarkan alamat pribadi -- END -->
 
+   <!-- Tombol Reset Filter -->
+<section class="reset-filter-section">
+    
+    <div>
+        <button wire:click="resetFilters"  class="reset-button" >
+            Reset Filter
+        </button>
+    </div>
+</section>
+
 <!-- Tampilkan jumlah anggota berdasarkan filter -->
 <div class="mt-6">
-    <h3 class="text-lg font-semibold">Jumlah Anggota</h3>
+    <h3 class="text-lg font-semibold ">Jumlah Anggota</h3>
     <div class="bg-white p-4 mt-2 border rounded-md shadow-md">
-        <p class="text-gray-700" wire:change="refreshData">Jumlah Anggota Terpilih: <strong>{{ $data->count() }}</strong></p>
+        <p class="text-gray-700" wire:change="refreshData">Jumlah Anggota Terpilih: <strong>{{ $data->count() }}</strong> dari total anggota: <strong>{{ $allMembersCount }}</strong>
+       
+        </p>
+        
         
     </div>
 
@@ -230,11 +242,76 @@
 </div>
 
 
+<style>
+    .filter-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    .filter-search {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        flex-grow: 1;
+    }
+    .filter-button {
+        padding: 8px 16px;
+        background-color: #4f46e5; /* Indigo 600 */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .filter-button:hover {
+        background-color: #4338ca; /* Indigo 700 */
+    }
+    .search-button {
+        padding: 8px 16px;
+        background-color: #3b82f6; /* Warna biru (blue-500) */
+        color: black;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        outline: none;
+    }
 
-</div>
+    .search-button:hover {
+        background-color: #2563eb; /* Warna biru lebih gelap (blue-600) */
+    }
 
+    .search-button:focus {
+        box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.6); /* Ring focus warna biru (blue-300) */
+    }
 
-    
-</div>
+    .reset-filter-section {
+        display: flex;
+        justify-content: flex-end; /* Taruh isi section di kanan */
+        padding: 8px;
+    }
+
+    .reset-button {
+        font-weight: 600; /* font-semibold */
+        color: rgb(0, 0, 0);
+        padding: 8px 16px; /* px-4 py-2 */
+        margin-top: 16px; /* mt-4 */
+        background-color: rgb(145, 145, 145);
+        border: none;
+        border-radius: 6px; /* rounded-md */
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        outline: none;
+    }
+
+    .reset-button:hover {
+        background-color: #dc2626; /* merah lebih gelap (red-600) */
+    }
+
+    .reset-button:focus {
+        box-shadow: 0 0 0 3px rgba(252, 165, 165, 0.6); /* ring merah muda (red-300) */
+    }
+</style>
 
 

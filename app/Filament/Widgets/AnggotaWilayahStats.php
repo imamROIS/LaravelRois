@@ -231,9 +231,11 @@ class AnggotaWilayahStats extends Widget
     public function render(): View
     {
         $data = $this->getData();
+        $this->allMembersCount = Anggota::count(); 
 
         return view('filament.widgets.anggota-wilayah-stats', [
             'data' => $data,
+            'allMembersCount' => $this->allMembersCount, 
         ]);
     }
 
@@ -258,6 +260,8 @@ class AnggotaWilayahStats extends Widget
         $this->render();
     }
 
+
+
     public $selectedAnggota;
 
     public function showDetail($id)
@@ -271,4 +275,5 @@ class AnggotaWilayahStats extends Widget
     }
 
     protected $listeners = ['refreshComponent' => '$refresh'];
+    
 }
