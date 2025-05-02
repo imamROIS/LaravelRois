@@ -44,7 +44,7 @@ return new class extends Migration
         $table->string('NIB', 20)->nullable();
         $table->string('Dokumen_KTP', 255);
         $table->string('Dokumen_NIB', 255)->nullable();
-        $table->string('Foto_Tempat_Usaha', 20)->nullable();
+        $table->string('Foto_Tempat_Usaha', 255)->nullable();
         $table->string('Dokumen_Sertifikat_Halal', 255)->nullable();
         $table->string('Foto_Produk', 255)->nullable();
         $table->foreignId('lastmodifiedanggota')->nullable()->constrained('users')->nullOnDelete();

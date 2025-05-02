@@ -207,6 +207,7 @@ class AnggotaResource extends Resource
                 ->label('Modified By')
             
         ])->filters([
+            Tables\Filters\TrashedFilter::make(),
            
         ])
         
@@ -226,6 +227,8 @@ class AnggotaResource extends Resource
         ])
         ->bulkActions([
             Tables\Actions\DeleteBulkAction::make(),
+            Tables\Actions\ForceDeleteBulkAction::make(),
+            
         ]);
     }
 
@@ -243,6 +246,7 @@ class AnggotaResource extends Resource
 
         ];
     }
+    
     
     
 }
