@@ -19,12 +19,14 @@ use App\Filament\Widgets\AnggotaStats;
 use App\Filament\Widgets\AnggotaWilayahStats;
 use Filament\Tables\Table as TablesTable;
 use Illuminate\Support\Facades\Hash;
+use Livewire\WithFileUploads;
 
 class AnggotaResource extends Resource
 {
     protected static ?string $model = Anggota::class;
     protected static ?string $navigationIcon = 'heroicon-o-user-group'; 
     protected static ?string $pluralLabel = 'Biodata';
+   
    
 
     
@@ -36,11 +38,24 @@ class AnggotaResource extends Resource
         return $form
         
         
+        
         ->schema([
             
-            Forms\Components\Grid::make(2)->schema([
+            Forms\Components\Grid::make(1)->schema([
             ]),
-            Forms\Components\Section::make('Informasi Pribadi')->schema([
+            Forms\Components\Section::make('Informasi Pribadi')->extraAttributes([
+                'style' => '
+                    filter: drop-shadow(0 0 0.5rem #052e16);                    
+                    background-color: #16a34a;
+                    
+                    
+                    border-radius: 10px;
+
+                    @media (prefers-color-scheme: dark) {
+                        background-color: #5eead4;
+                        
+                    }'
+            ])->schema([
                 
                 TextInput::make('ID_Anggota')
                     ->datalist(Anggota::pluck('ID_Anggota')->unique()->toArray())
@@ -82,7 +97,19 @@ class AnggotaResource extends Resource
                         
                     ]),
 
-                    Forms\Components\Section::make('Alamat Tinggal')->schema([
+                    Forms\Components\Section::make('Alamat Tinggal')->extraAttributes([
+                        'style' => '
+                            filter: drop-shadow(0 0 0.5rem #052e16);                    
+                            background-color: #22c55e;
+                            
+                            
+                            border-radius: 10px;
+        
+                            @media (prefers-color-scheme: dark) {
+                                background-color: #5eead4;
+                                
+                            }'
+                    ])->schema([
                         Textarea::make('Alamat_Tinggal')->label('Alamat Tinggal')->required(),
                         // TextInput::make('Provinsi_Tinggal')->label('Provinsi Tinggal')->helperText('Nama Provinsi saja') ->required(),
                         Forms\Components\Grid::make(4)->schema([
@@ -98,7 +125,8 @@ class AnggotaResource extends Resource
                         ->required(),
 
                         
-                        Select::make('Kota_Usaha')
+                        Select::make('Kota_Tinggal')
+                        ->label('Kota Tinggal')
                         ->options([
                                     'Jakarta Utara' => 'JAKARTA UTARA',
                                     'Jakarta Selatan' => 'JAKARTA SELATAN',
@@ -119,11 +147,35 @@ class AnggotaResource extends Resource
 
 
 
-            Forms\Components\Section::make('Informasi Usaha')->schema([
+            Forms\Components\Section::make('Informasi Usaha')->extraAttributes([
+                'style' => '
+                    filter: drop-shadow(0 0 0.5rem #052e16);                    
+                    background-color: #16a34a;
+                    
+                    
+                    border-radius: 10px;
+
+                    @media (prefers-color-scheme: dark) {
+                        background-color: #5eead4;
+                        
+                    }'
+            ])->schema([
                 TextInput::make('Nama_Usaha')->label('Nama Usaha')->required(),
 
 
-                Forms\Components\Section::make('Alamat Usaha')->schema([
+                Forms\Components\Section::make('Alamat Usaha')->extraAttributes([
+                    'style' => '
+                        filter: drop-shadow(0 0 0.5rem #052e16);                    
+                        background-color: #22c55e;
+                        
+                        
+                        border-radius: 10px;
+    
+                        @media (prefers-color-scheme: dark) {
+                            background-color: #5eead4;
+                            
+                        }'
+                ])->schema([
                     Textarea::make('Alamat_Usaha')->label('Alamat Usaha')->required(),
                     // TextInput::make('Provinsi_Usaha')->label('Provinsi Usaha')->helperText('Nama Provinsi saja') ->required(),
                     Forms\Components\Grid::make(4)->schema([
@@ -157,7 +209,7 @@ class AnggotaResource extends Resource
                     'FASYEN DAN AKSESORI' => 'FASYEN DAN AKSESORI',    
                     'PRODUK KECANTIKAN' => 'PRODUK KECANTIKAN',
                 ]),
-                TextInput::make('Bidang_Usaha')->label('Bidang Usaha')->required(),
+
                 TextInput::make('Jenis_Produk')->label('Jenis Produk')->required(),
                 TextInput::make('Lama_Berusaha')->label('Lama Berusaha (tahun)')->numeric()->required(),
                 Select::make('Pemasaran_Produk')->label('Metode Pemasaran Produk')->options([
@@ -172,6 +224,19 @@ class AnggotaResource extends Resource
             ]),
 
             Forms\Components\Section::make('Informasi Keuangan')
+            ->extraAttributes([
+                'style' => '
+                    filter: drop-shadow(0 0 0.5rem #052e16);                    
+                    background-color: #16a34a;
+                    
+                    
+                    border-radius: 10px;
+
+                    @media (prefers-color-scheme: dark) {
+                        background-color: #5eead4;
+                        
+                    }'
+            ])
             
             ->schema([
                 TextInput::make('Omzet_Harian')->label('Omzet Harian')->numeric()->required(),
@@ -180,7 +245,21 @@ class AnggotaResource extends Resource
 
             ]),
 
-            Forms\Components\Section::make('Dokumen Pendukung')->schema([
+            Forms\Components\Section::make('Dokumen Pendukung')
+            ->extraAttributes([
+                'style' => '
+                    filter: drop-shadow(0 0 0.5rem #052e16);                    
+                    background-color: #16a34a;
+                    
+                    
+                    border-radius: 10px;
+
+                    @media (prefers-color-scheme: dark) {
+                        background-color: #5eead4;
+                        
+                    }'
+            ])
+            ->schema([
                 FileUpload::make('Dokumen_KTP')->label('KTP/KITAS')->required(),
 
                 FileUpload::make('Foto_Produk')->label('Foto Produk')->nullable(),
@@ -190,37 +269,81 @@ class AnggotaResource extends Resource
                 
             ]),
         ]);
+        
     }
 
     public static function table(Tables\Table $table): Tables\Table
     {
         return $table->columns([
-            TextColumn::make('ID_Anggota')->label('ID Anggota'),
-            TextColumn::make('Nama_Anggota')->label('Nama Anggota'),
-            TextColumn::make('No_KTP_NIK')->label('No KTP/NIK'),
-            TextColumn::make('No_Handphone')->label('No Handphone'),
-            TextColumn::make('Email')->label('Email'),
-            TextColumn::make('Nama_Usaha')->label('Nama Usaha'),
-            TextColumn::make('Omzet_Harian')->label('Omzet Harian'),
-            TextColumn::make('created_at')->label('Tanggal Dibuat')->dateTime(),
+            TextColumn::make('ID_Anggota')
+            ->label('ID Anggota') 
+            ->sortable()
+            ->searchable()
+            ->description(fn ($record) => $record->No_KTP_NIK ?? '')
+            ->toggleable(),
+            TextColumn::make('Nama_Anggota')
+            ->label('Nama Anggota')
+            ->sortable()
+            ->searchable()
+            ->toggleable()
+            ->description(fn ($record) => $record->Email ?? ''),
+            TextColumn::make('No_KTP_NIK')                
+            ->label('No KTP/NIK')
+            ->sortable()
+            ->searchable()
+            ->toggleable(isToggledHiddenByDefault: true),
+            TextColumn::make('No_Handphone')                
+            ->label('No Handphone')
+            ->sortable()
+            ->searchable()
+            ->toggleable()
+            ->url(fn ($record) => "tel:{$record->No_Handphone}"),
+            TextColumn::make('Email')                
+            ->label('Email')
+            ->sortable()
+            ->searchable()
+            ->toggleable()
+            ->url(fn ($record) => "mailto:{$record->Email}")
+            ->toggleable(isToggledHiddenByDefault: true),
+            TextColumn::make('Nama_Usaha')                
+            ->label('Nama Usaha')
+            ->sortable()
+            ->searchable()
+            ->toggleable()
+            ->limit(30)
+            ->tooltip(fn ($record) => $record->Jenis_Produk ?? ''),
+
+            TextColumn::make('Omzet_Harian')                
+            ->label('Omzet Harian')
+            ->sortable()
+            ->numeric()
+            ->money('IDR')
+            ->toggleable(),
+            TextColumn::make('created_at')                
+            ->label('Tanggal Dibuat')
+            ->dateTime()
+            ->sortable()
+            ->toggleable(isToggledHiddenByDefault: true),
             TextColumn::make('lastModifiedAnggotaBy.name')
-                ->label('Modified By')
+            ->label('Modified By')
+            ->sortable()
+            ->toggleable(isToggledHiddenByDefault: true),
+            
             
         ])->filters([
             Tables\Filters\TrashedFilter::make(),
+            
            
         ])
         
         ->actions([
             Tables\Actions\EditAction::make(),
             Tables\Actions\ViewAction::make(),
-            Tables\Actions\ReplicateAction::make()
-            ->mutateRecordDataUsing(function (array $data): array {
-                // Tambahkan angka acak agar ID unik
-                $data['ID_Anggota'] = $data['ID_Anggota'] . '-' . rand(1000, 9999);
-        
-                return $data;
-            }),
+            Tables\Actions\Action::make('export-pdf')
+    ->label('Export PDF')
+    
+    ->url(fn (Anggota $record) => route('export.anggota.pdf', $record)),     
+
             
             
             
@@ -229,12 +352,20 @@ class AnggotaResource extends Resource
             Tables\Actions\DeleteBulkAction::make(),
             Tables\Actions\ForceDeleteBulkAction::make(),
             
-        ]);
+        ])
+        ->defaultSort('created_at', 'desc')
+        ->persistSortInSession()
+        ->persistSearchInSession()
+        ->persistColumnSearchesInSession()
+        ->reorderable('sort_order')
+        ->paginated([10, 25, 50, 100, 'all']);
     }
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            
+        ];
     }
 
     public static function getPages(): array

@@ -23,4 +23,5 @@ class EditAnggota extends EditRecord
     $data['lastmodifiedanggota'] = Auth::id(); // Set ID pengguna aktif
     return $data;
     }
+    
 }

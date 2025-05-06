@@ -1,0 +1,94 @@
+/* Reset dasar untuk konsistensi */
+.fi-topbar,
+.fi-sidebar,
+.fi-main {
+    transition: all 0.3s ease;
+}
+
+/* Navigation Bar (Header) */
+.fi-topbar {
+    @apply bg-green-700 dark:bg-green-900 !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.fi-topbar-item {
+    @apply text-white hover:bg-green-600 dark:hover:bg-green-800 !important;
+}
+
+.fi-topbar-item svg {
+    @apply text-white !important;
+}
+
+/* Sidebar */
+.fi-sidebar {
+    @apply bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 !important;
+}
+
+.fi-sidebar-nav {
+    @apply space-y-1;
+}
+
+.fi-sidebar-item {
+    @apply text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 !important;
+}
+
+.fi-sidebar-item-active {
+    @apply bg-green-50 text-green-700 dark:bg-green-900/50 dark:text-green-300 !important;
+}
+
+/* Konten Utama */
+.fi-main {
+    @apply bg-gray-50 dark:bg-gray-900 !important;
+}
+
+/* Card */
+.fi-card {
+    @apply rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 !important;
+}
+
+/* Tabel */
+.fi-ta-table {
+    @apply min-w-full divide-y divide-gray-200 dark:divide-gray-700 !important;
+}
+
+.fi-ta-table th {
+    @apply bg-gray-50 dark:bg-gray-800 !important;
+}
+
+.fi-ta-table td {
+    @apply whitespace-nowrap !important;
+}
+
+/* Form Input */
+.fi-input {
+    @apply border-gray-300 focus:border-green-500 focus:ring-green-500 dark:border-gray-600 dark:bg-gray-800 !important;
+}
+
+/* Tombol */
+.fi-btn {
+    @apply rounded-md shadow-sm !important;
+}
+
+.fi-btn-primary {
+    @apply bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 !important;
+}
+
+/* Pagination */
+.fi-pagination-item {
+    @apply text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 !important;
+}
+
+.fi-pagination-item-active {
+    @apply bg-green-600 text-white dark:bg-green-700 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .fi-sidebar {
+        @apply w-64 transform -translate-x-full fixed z-50;
+    }
+    
+    .fi-sidebar-visible {
+        @apply transform translate-x-0;
+    }
+}

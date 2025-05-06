@@ -149,9 +149,11 @@ use App\Models\Anggota;
 use Filament\Widgets\Widget;
 use Illuminate\Contracts\View\View;
 use Livewire\WithPagination;
+use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 
 class AnggotaWilayahStats extends Widget
 {
+    use HasWidgetShield;
     protected function getColumn(): int
     {
         return 1; // Menampilkan dalam satu kolom penuh

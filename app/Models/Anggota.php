@@ -6,11 +6,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Str; 
+use Illuminate\Support\Facades\Storage; 
 
 class Anggota extends Model
 {
     //
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasRoles;
 
     protected $table = 'anggotas';
 
@@ -153,6 +156,66 @@ class Anggota extends Model
     {
         return $this->belongsTo(User::class, 'lastmodifiedanggota');
     }
+
+    public function getDocumentFullPath($fieldName)
+{
+    if (empty($this->$fieldName)) return null;
+    
+    // Untuk path baru (ktp/filename.jpg)
+    if (strpos($this->$fieldName, '/') !== false) {
+        return storage_path('app/public/' . $this->$fieldName);
+    }
+    
+    // Untuk kompatibilitas dengan path lama
+    return storage_path('app/public/' . 
+        Str::snake(str_replace('Dokumen_', '', $fieldName)) . '/' . 
+        $this->$fieldName);
+}
+
+public function documentExists($fieldName)
+{
+    $path = $this->getDocumentFullPath($fieldName);
+    return $path && file_exists($path);
+}
+
+    /**
+     * Reorganize files to new directory structure (safe for production)
+     * Run via: php artisan tinker
+     * >>> App\Models\Anggota::first()->reorganizeFiles();
+     */
+    public function reorganizeFiles()
+{
+    $anggotas = Anggota::all();
+    
+    foreach ($anggotas as $anggota) {
+        foreach (['Dokumen_KTP', 'Dokumen_NIB', 'Foto_Tempat_Usaha', 'Foto_Produk', 'Dokumen_Sertifikat_Halal'] as $field) {
+            if ($anggota->$field) {
+                try {
+                    $oldPath = $anggota->getDocumentFullPath($field);
+                    $newFolder = Str::snake(str_replace('Dokumen_', '', $field)); // ktp, nib, etc
+                    $newPath = storage_path("app/public/{$newFolder}/" . basename($oldPath));
+                    
+                    // Create directory if not exists
+                    if (!file_exists(dirname($newPath))) {
+                        mkdir(dirname($newPath), 0755, true);
+                    }
+                    
+                    if (file_exists($oldPath) && !file_exists($newPath)) {
+                        rename($oldPath, $newPath);
+                        $anggota->$field = "{$newFolder}/" . basename($oldPath);
+                        $anggota->save();
+                    }
+                } catch (\Exception $e) {
+                    \Log::error("Failed to move file for {$field}: " . $e->getMessage());
+                    continue;
+                }
+            }
+        }
+    }
+    
+    return "File reorganization completed for " . count($anggotas) . " members";
+}
+
 
 
 }

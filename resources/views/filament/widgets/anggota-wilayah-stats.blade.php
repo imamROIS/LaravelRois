@@ -178,30 +178,34 @@
         
     </div>
 
-    <div class="overflow-y-auto max-h-96 border rounded-md shadow-md">
+    <div class="overflow-y-auto max-h-96 border border-gray-200 rounded-lg shadow-lg">
         <table class="w-full text-left">
-            <thead class="bg-gray-200">
+            <thead class="bg-green-600 text-white">
                 <tr>
-                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">ID</th>
-                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Nama</th>
-                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Usaha</th>
-                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Domisili</th>
-                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Lokasi</th>
-                    <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Aksi</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Nama</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Usaha</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Domisili</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Lokasi</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider">Aksi</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="divide-y divide-gray-200 bg-white">
                 @foreach ($data as $anggota)
-                    <tr class="border-b">
-                        <td class="px-4 py-2">{{ $anggota->ID_Anggota}}</td>
-                        <td class="px-4 py-2 ">{{ $anggota->Nama_Anggota}}</td>
-                        <td class="px-4 py-2 ">{{ $anggota->Nama_Usaha }}</td>
-                        <td class="px-4 py-2 ">{{ $anggota->Kelurahan_Usaha }}</td>
-                        <td class="px-4 py-2 ">{{ $anggota->Kelurahan_Usaha }}</td>
-                        <td class="px-4 py-2">
+                    <tr class="hover:bg-green-50 transition-colors duration-150">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $anggota->ID_Anggota}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Nama_Anggota}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Nama_Usaha }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Kelurahan_Usaha }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Kelurahan_Usaha }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm">
                             <button wire:click="showDetail({{ $anggota->id }})"
-                                class="px-3 py-1 bg-blue-500 rounded-md hover:bg-blue-600">
-                                View
+                                class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors duration-200 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                Detail
                             </button>
                         </td>
                     </tr>
@@ -217,21 +221,42 @@
     </div>
 
     @if ($selectedAnggota)
-    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
-        <div class="bg-white p-6 rounded-md shadow-lg w-96">
+    <div class="modalpopup">
+        <div class="modalpopupcontainer">
             <h2 class="text-lg font-bold mb-4">Detail Anggota</h2>
             <p><strong>Nama:</strong> {{ $selectedAnggota->Nama_Anggota }}</p>
-            <p><strong>Kecamatan:</strong> {{ $selectedAnggota->Kecamatan_Tinggal }}</p>
+            <p><strong>Kecamatan Tinggal:</strong> {{ $selectedAnggota->Kecamatan_Tinggal }}</p>
             <p><strong>Kelurahan:</strong> {{ $selectedAnggota->Kelurahan_Tinggal }}</p>
             <p><strong>Kota:</strong> {{ $selectedAnggota->Kota_Tinggal }}</p>
             <p><strong>Nama Usaha:</strong> {{ $selectedAnggota->Nama_Usaha }}</p>
             <p><strong>Jenis Produk:</strong> {{ $selectedAnggota->Jenis_Produk }}</p>
-            <p><strong>Foto Produk:</strong></p>
-            <img height="150" width="150" src="{{ asset('storage/' . $selectedAnggota->Foto_Produk) }}" alt="Foto Produk" class="foto-produk">
+            <p><strong>Bidang Usaha:</strong>{{ $selectedAnggota->Bidang_Usaha }}</p>
+            <table class="data-table">
+                <tr>
+                    <th width="">ID Anggota</th>
+                    <td>{{ $selectedAnggota->ID_Anggota }}</td>
+                </tr>
+                <tr>
+                    <th>Nama Lengkap</th>
+                    <td>{{ $selectedAnggota->Nama_Anggota }}</td>
+                </tr>
+                <tr>
+                    <th>Alamat</th>
+                    <td>{{ $selectedAnggota->Alamat_Tinggal }}</td>
+                </tr>
+                <tr>
+                    <th>No. Telepon</th>
+                    <td>{{ $selectedAnggota->No_Handphone }}</td>
+                </tr>
+                <tr>
+                    <th>Jenis Usaha</th>
+                    <td>{{ $selectedAnggota->Bidang_Usaha }}</td>
+                </tr>
+            </table>
 
     
             <button wire:click="closeModal"
-                class="mt-4 px-4 py-2 bg-red-500  rounded-md hover:bg-red-600">
+                class="close-button-popup">
                 Close
             </button>
         </div>
@@ -243,6 +268,48 @@
 
 
 <style>
+    /* modalpopup  fixed inset-0 flex items-center justify-center bg-black bg-opacity-70*/
+    .modalpopup {
+        
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .modalpopupcontainer {
+        background-color: #ffffff;
+        padding: 20px;
+        border: 1px solid #030303;
+
+        border-radius: 8px;
+        width: 50%;
+        height: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    /* Tabel Data */
+    table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 10pt;
+        }
+        
+        .data-table th, 
+        .data-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .data-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
     .filter-container {
         display: flex;
         align-items: center;
@@ -312,6 +379,71 @@
     .reset-button:focus {
         box-shadow: 0 0 0 3px rgba(252, 165, 165, 0.6); /* ring merah muda (red-300) */
     }
+
+    .close-button-popup {
+        font-weight: 600; /* font-semibold */
+        color: rgb(0, 0, 0);
+        padding: 8px 16px; /* px-4 py-2 */
+        margin-top: 16px; /* mt-4 */
+        background-color: rgb(145, 145, 145);
+        border: none;
+        border-radius: 6px; /* rounded-md */
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        outline: none;
+    }
+    /* Style untuk tabel */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th {
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Efek hover yang lebih halus */
+.hover\:bg-green-50:hover {
+    background-color: rgba(240, 253, 244, 0.7);
+}
+
+/* Tombol aksi */
+button.bg-green-500 {
+    background-color: #22c55e;
+}
+
+button.bg-green-500:hover {
+    background-color: #16a34a;
+    transform: translateY(-1px);
+}
+
+/* Scrollbar custom */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #86efac;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4ade80;
+}
 </style>
 
 

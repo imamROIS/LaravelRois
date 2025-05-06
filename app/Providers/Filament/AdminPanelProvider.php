@@ -20,6 +20,13 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Widgets\AnggotaStats;
 use App\Filament\Widgets\KotaUsahaStats;
+use Swis\Filament\Backgrounds\FilamentBackgroundsPlugin;
+use Swis\Filament\Backgrounds\ImageProviders\MyImages;
+use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use Spatie\Permission\Traits\HasRoles;
+use Filament\Support\Facades\FilamentColor;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -28,46 +35,86 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            
-            ->default()
             ->id('admin')
+            ->default()            
             ->path('admin')
             ->login(  )
-            ->topNavigation()
             ->font('Inter')
             ->darkMode(false)
+            ->sidebarWidth('20rem')           
             ->colors([
-                // Warna utama - biru tua Muhammadiyah
-                'primary' => [
-                    50 => '#eef3ff',
-                    100 => '#d9e4ff',
-                    200 => '#bccefe',
-                    300 => '#90acfd',
-                    400 => '#6082f9',
-                    500 => '#3d5af2', 
-                    600 => '#2d3fb0', // Biru tua Muhammadiyah
-                    700 => '#243490',
-                    800 => '#1f2a69',
-                    900 => '#1d2657',
-                    950 => '#0f1331',
-                ],
-                // Warna sekunder - kuning Muhammadiyah
-                'secondary' => [
-                    50 => '#fefbe8',
-                    100 => '#fff8c2',
-                    200 => '#ffef86',
-                    300 => '#ffe246',
-                    400 => '#ffce1f', // Kuning Muhammadiyah
-                    500 => '#efb307',
-                    600 => '#cc8a04',
-                    700 => '#a36108',
-                    800 => '#874c0f',
-                    900 => '#723e12',
-                    950 => '#422006',
-                ],
-                // Warna aksen/utilitas tetap sama
+                // Warna utama - 
+               'primary' => [ // Biru tua yang lebih natural
+                50 => '#f0fdf4',
+                100 => '#dcfce7',
+                200 => '#bbf7d0',
+                300 => '#86efac',
+                400 => '#4ade80',
+                500 => '#22c55e', // Hijau utama
+                600 => '#16a34a',
+                700 => '#15803d',
+                800 => '#166534',
+                900 => '#14532d',
+                950 => '#052e16',
+    ],
+    'success' => [ // Hijau sebagai warna sekunder utama
+        50 => '#f0fdf4',
+        100 => '#dcfce7',
+        200 => '#bbf7d0',
+        300 => '#86efac',
+        400 => '#4ade80',
+        500 => '#22c55e', // Hijau utama
+        600 => '#16a34a',
+        700 => '#15803d',
+        800 => '#166534',
+        900 => '#14532d',
+        950 => '#052e16',
+    ],
+    'emerald' => [ // Nuansa hijau alternatif
+        50 => '#ecfdf5',
+        100 => '#d1fae5',
+        200 => '#a7f3d0',
+        300 => '#6ee7b7',
+        400 => '#34d399', // Hijau zamrud
+        500 => '#10b981',
+        600 => '#059669',
+        700 => '#047857',
+        800 => '#065f46',
+        900 => '#064e3b',
+        950 => '#022c22',
+    ],
+    'teal' => [ // Hijau kebiruan untuk variasi
+        50 => '#f0fdfa',
+        100 => '#ccfbf1',
+        200 => '#99f6e4',
+        300 => '#5eead4',
+        400 => '#2dd4bf', // Teal medium
+        500 => '#14b8a6',
+        600 => '#0d9488',
+        700 => '#0f766e',
+        800 => '#115e59',
+        900 => '#134e4a',
+        950 => '#042f2e',
+    ],
+    'danger' => [ // Tetap mempertahankan merah untuk error
+        50 => '#fef2f2',
+        100 => '#fee2e2',
+        200 => '#fecaca',
+        300 => '#fca5a5',
+        400 => '#f87171',
+        500 => '#ef4444',
+        600 => '#dc2626',
+        700 => '#b91c1c',
+        800 => '#991b1b',
+        900 => '#7f1d1d',
+        950 => '#450a0a',
+    ]
                 
             ])
+            ->brandLogo(asset('images/Logo.png'))
+            ->brandLogoHeight('3rem')
+           
+            ->favicon(asset('images/Logo.png'))
             // TAMBAHKAN KODE INI - Untuk mengubah warna section header
             
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
@@ -101,6 +148,11 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->plugins([
+                FilamentBackgroundsPlugin::make()
+                    ->showAttribution(false),
+                    \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
+            ]) ;
     }
 }
