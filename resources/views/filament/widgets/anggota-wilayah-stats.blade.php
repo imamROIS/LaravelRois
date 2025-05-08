@@ -224,21 +224,42 @@
     <div class="modalpopup">
         <div class="modalpopupcontainer">
             <h2 class="text-lg font-bold mb-4">Detail Anggota</h2>
-            <p><strong>Nama:</strong> {{ $selectedAnggota->Nama_Anggota }}</p>
-            <p><strong>Kecamatan Tinggal:</strong> {{ $selectedAnggota->Kecamatan_Tinggal }}</p>
-            <p><strong>Kelurahan:</strong> {{ $selectedAnggota->Kelurahan_Tinggal }}</p>
-            <p><strong>Kota:</strong> {{ $selectedAnggota->Kota_Tinggal }}</p>
-            <p><strong>Nama Usaha:</strong> {{ $selectedAnggota->Nama_Usaha }}</p>
-            <p><strong>Jenis Produk:</strong> {{ $selectedAnggota->Jenis_Produk }}</p>
-            <p><strong>Bidang Usaha:</strong>{{ $selectedAnggota->Bidang_Usaha }}</p>
-            <table class="data-table">
+            {{-- <p><strong>Nama                 :</strong> {{ $selectedAnggota->Nama_Anggota }}</p>
+            <p><strong>Kecamatan Tinggal    :</strong> {{ $selectedAnggota->Kecamatan_Tinggal }}</p>
+            <p><strong>Kelurahan            :</strong> {{ $selectedAnggota->Kelurahan_Tinggal }}</p>
+            <p><strong>Kota                 :</strong> {{ $selectedAnggota->Kota_Tinggal }}</p>
+            <p><strong>Nama Usaha           :</strong> {{ $selectedAnggota->Nama_Usaha }}</p>
+            <p><strong>Jenis Produk         :</strong> {{ $selectedAnggota->Jenis_Produk }}</p>
+            <p><strong>Bidang Usaha         :</strong>{{ $selectedAnggota->Bidang_Usaha }}</p> --}}
+            <table class="data-tablepopup">
                 <tr>
                     <th width="">ID Anggota</th>
                     <td>{{ $selectedAnggota->ID_Anggota }}</td>
                 </tr>
                 <tr>
-                    <th>Nama Lengkap</th>
+                    <th>Nama </th>
                     <td>{{ $selectedAnggota->Nama_Anggota }}</td>
+                </tr>
+                <tr>
+                    <th>Kecamatan Tinggal</th>
+                    <td>{{ $selectedAnggota->Kecamatan_Tinggal }}</td>
+                </tr>
+                <tr>
+                    <th>Kelurahan Tinggal</th>
+                    <td>{{ $selectedAnggota->Kelurahan_Tinggal }}</td>
+                </tr>
+                <tr>
+                    <th>Nama Usaha</th>
+                    <td>{{ $selectedAnggota->Nama_Usaha }}</td>
+                </tr>
+
+                <tr>
+                    <th>Jenis Produk</th>
+                    <td>{{ $selectedAnggota->Jenis_Produk }}</td>
+                </tr>
+                <tr>
+                    <th>Bidang Usaha</th>
+                    <td>{{ $selectedAnggota->Bidang_Usaha }}</td>
                 </tr>
                 <tr>
                     <th>Alamat</th>
@@ -270,7 +291,7 @@
 <style>
     /* modalpopup  fixed inset-0 flex items-center justify-center bg-black bg-opacity-70*/
     .modalpopup {
-        
+        z-index: 100;        
         position: fixed;
         top: 0;
         left: 0;
@@ -282,14 +303,15 @@
         align-items: center;
     }
     .modalpopupcontainer {
+        z-index: 200;
         background-color: #ffffff;
         padding: 20px;
         border: 1px solid #030303;
 
         border-radius: 8px;
         width: 50%;
-        height: 50%;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        height: 75%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
     }
     /* Tabel Data */
     table.data-table {
@@ -301,12 +323,15 @@
         
         .data-table th, 
         .data-table td {
+            z-index: 10;
+            background-color: #f1f1f1
             border: 1px solid #000;
             padding: 8px;
             text-align: left;
         }
         
         .data-table th {
+            z-index: 20;
             background-color: #f2f2f2;
             font-weight: bold;
         }
@@ -392,6 +417,30 @@
         transition: background-color 0.3s, box-shadow 0.3s;
         outline: none;
     }
+
+    .data-tablepopup {
+        z-index: 300;
+        display: flex
+        background-color: #ffffff;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 10pt;
+        
+    }
+    .data-tablepopup th, 
+        .data-tablepopup td {
+            
+            background-color: #f1f1f1
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .data-tablepopup th {
+            
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
     /* Style untuk tabel */
 table {
     border-collapse: separate;
