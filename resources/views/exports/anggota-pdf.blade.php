@@ -4,6 +4,58 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Dokumen Resmi LP UMKM</title>
     <style>
+        /* Style dokument pendukung */
+        .document-item-single {
+            margin-top: 2cm;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        .document-image-single {
+            max-width: 100%;
+            max-height: 15cm;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-preview-single {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            margin: 0 auto;
+        }
+
+        .file-info-single {
+            margin-top: 1cm;
+            font-size: 12pt;
+            text-align: center;
+        }
+
+        .missing-document-single {
+            padding: 2cm;
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+
+        .unsupported-format {
+            padding: 2cm;
+            text-align: center;
+            color: #666;
+            border: 1px dashed #ccc;
+        }
+
+        /* Memastikan setiap dokumen dimulai di halaman baru */
+        .page {
+            page-break-after: always;
+        }
+
+        .last-page {
+            page-break-after: auto;
+        }
+
         /* Reset Margin dan Padding */
         body {
             margin: 0;
@@ -22,7 +74,7 @@
 
         /* Kop Surat */
         .letterhead {
-            display: flex;
+            display: block;
             width: 100%;
             margin-bottom: 1cm;
             padding-bottom: 15px;
@@ -31,16 +83,18 @@
 
         .logo-column {
             width: 100px;
-            padding-right: 20px;
+
         }
 
         .header-column {
             flex: 1;
             padding-left: 10px;
             border-left: 1px solid #ddd;
+            align-items: center;
         }
 
         .header-title {
+            text-align: left;
             font-size: 14pt;
             font-weight: bold;
             margin: 0 0 5px 0;
@@ -48,12 +102,14 @@
         }
 
         .header-subtitle {
+            text-align: left;
             font-size: 12pt;
             margin: 0 0 3px 0;
             font-weight: bold;
         }
 
         .header-info {
+            text-align: left;
             font-size: 10pt;
             margin: 0;
             line-height: 1.4;
@@ -251,24 +307,27 @@
     <!-- Halaman 1: Data Utama -->
     <div class="page">
         <!-- Kop Surat -->
+
         <div class="letterhead">
-            <table>
+            <table width="100%">
                 <tr>
-                    <th><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/Logo.png'))) }}" width="100"></th>
+                    <th width="20%"><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/Logo.png'))) }}" width="100"></th>
                     <td>
                         <div class="header-column">
                             <h1 class="header-title">dokumen resmi</h1>
-                            <h2 class="header-subtitle">lp umkm dki jakarta</h2>
+                            <h2 class="header-subtitle">LP UMKM Muhammadiyah Jakarta</h2>
                             <p class="header-info">
-                                Jl. Contoh No. 123, Jakarta Selatan<br>
-                                Telp: (021) 12345678 | Email: info@lpumkm.id<br>
-                                NPWP: 12.345.678.9-012.345
+                                Jl. Kramat Raya No. 49, Senen, Jakarta Pusat, 10430 <br>
+                                Telp. 0838-9606-5344 | Email: lpumkmpwmjakarta@gmail.com<br>
+                                Jakarta Pusat 10430
                             </p>
                         </div>
                     </td>
                 </tr>
             </table>
         </div>
+
+
 
         <!-- Konten Dokumen -->
         <div class="content">
@@ -351,19 +410,17 @@
     <div class="page last-page">
         <!-- Kop Surat -->
         <div class="letterhead">
-            <table>
+            <table width="100%">
                 <tr>
-                    <td class="logo-column">
-                        <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/Logo.png'))) }}" width="100">
-                    </td>
+                    <th width="20%"><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/Logo.png'))) }}" width="100"></th>
                     <td>
                         <div class="header-column">
                             <h1 class="header-title">dokumen resmi</h1>
-                            <h2 class="header-subtitle">lp umkm dki jakarta</h2>
+                            <h2 class="header-subtitle">LP UMKM Muhammadiyah Jakarta</h2>
                             <p class="header-info">
-                                Jl. Contoh No. 123, Jakarta Selatan<br>
-                                Telp: (021) 12345678 | Email: info@lpumkm.id<br>
-                                NPWP: 12.345.678.9-012.345
+                                Jl. Kramat Raya No. 49, Senen, Jakarta Pusat, 10430 <br>
+                                Telp. 0838-9606-5344 | Email: lpumkmpwmjakarta@gmail.com<br>
+                                Jakarta Pusat 10430
                             </p>
                         </div>
                     </td>
@@ -377,7 +434,7 @@
 
             <table class="data-table">
                 <tr>
-                    <th>Nama Usaha</th>
+                    <th width="25%">Nama Usaha</th>
                     <td>{{ $anggota->Nama_Usaha }}</td>
                 </tr>
                 <tr>
@@ -447,20 +504,19 @@
 
 
     <!-- Halaman 3: Dokumen Pendukung -->
-    <div class="page last-page">
-        <!-- Kop Surat -->
+    <div class="page">
         <div class="letterhead">
-            <table>
+            <table width="100%">
                 <tr>
-                    <th><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/Logo.png'))) }}" width="100"></th>
+                    <th width="20%"><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/Logo.png'))) }}" width="100"></th>
                     <td>
                         <div class="header-column">
                             <h1 class="header-title">dokumen resmi</h1>
-                            <h2 class="header-subtitle">lp umkm dki jakarta</h2>
+                            <h2 class="header-subtitle">LP UMKM Muhammadiyah Jakarta</h2>
                             <p class="header-info">
-                                Jl. Contoh No. 123, Jakarta Selatan<br>
-                                Telp: (021) 12345678 | Email: info@lpumkm.id<br>
-                                NPWP: 12.345.678.9-012.345
+                                Jl. Kramat Raya No. 49, Senen, Jakarta Pusat, 10430 <br>
+                                Telp. 0838-9606-5344 | Email: lpumkmpwmjakarta@gmail.com<br>
+                                Jakarta Pusat 10430
                             </p>
                         </div>
                     </td>
@@ -468,51 +524,306 @@
             </table>
         </div>
 
-        <!-- Di bagian dokumen pendukung -->
         <div class="document-page">
-            <div class="document-title">DOKUMEN PENDUKUNG</div>
+            <div class="document-title">DOKUMEN KTP</div>
 
-            <div class="document-grid">
-                @foreach(['KTP', 'NIB', 'Tempat Usaha', 'Produk', 'Sertifikat Halal'] as $docType)
-                @php
-                $document = collect($documents)->firstWhere('label', $docType);
-                @endphp
+            @php
+            $document = collect($documents)->firstWhere('label', 'KTP');
+            @endphp
 
-                <div class="document-item">
-                    <div class="document-label">{{ $docType }}</div>
-
-                    @if($document)
-                    @if($document['is_image'])
-                    <img src="data:{{ $document['type'] }};base64,{{ base64_encode(file_get_contents($document['path'])) }}" class="document-image" alt="{{ $document['original_name'] }}">
-                    @elseif($document['is_pdf'])
-                    <div class="pdf-preview">
-                        <iframe src="data:application/pdf;base64,{{ base64_encode(file_get_contents($document['path'])) }}#toolbar=0" style="width:100%;height:300px;"></iframe>
-                    </div>
-                    @else
-                    <div class="unsupported-format">
-                        Format tidak didukung: {{ $document['type'] }}
-                    </div>
-                    @endif
-
-                    <div class="file-info">
-                        {{ $document['original_name'] }}
-                    </div>
-                    @else
-                    <div class="missing-document">
-                        Dokumen tidak tersedia
-                    </div>
-                    @endif
+            <div class="document-item-single">
+                @if($document)
+                @if($document['is_image'])
+                <img src="data:{{ $document['type'] }};base64,{{ base64_encode(file_get_contents($document['path'])) }}" class="document-image-single" alt="{{ $document['original_name'] }}">
+                @elseif($document['is_pdf'])
+                <div class="pdf-preview-single">
+                    <iframe src="data:application/pdf;base64,{{ base64_encode(file_get_contents($document['path'])) }}#toolbar=0" style="width:100%;height:600px;"></iframe>
                 </div>
-                @endforeach
+                @else
+                <div class="unsupported-format">
+                    Format tidak didukung: {{ $document['type'] }}
+                </div>
+                @endif
+
+                <div class="file-info-single">
+                    Nama File: {{ $document['original_name'] }}
+                </div>
+                @else
+                <div class="missing-document-single">
+                    Dokumen KTP tidak tersedia
+                </div>
+                @endif
             </div>
         </div>
 
-        <!-- Footer -->
         <div class="footer">
             <div class="footer-left">
                 <div class="notes">LPUMKM Muhammadiyah Jakarta</div>
             </div>
+            <div class="footer-center">
+                <span class="page-number"></span>
+            </div>
+            <div class="footer-right">
+                <div class="notes">LPUMKM Muhammadiyah Jakarta</div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Halaman 4: Dokumen NIB -->
+    <div class="page">
+        <div class="letterhead">
+            <table width="100%">
+                <tr>
+                    <th width="20%"><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/Logo.png'))) }}" width="100"></th>
+                    <td>
+                        <div class="header-column">
+                            <h1 class="header-title">dokumen resmi</h1>
+                            <h2 class="header-subtitle">LP UMKM Muhammadiyah Jakarta</h2>
+                            <p class="header-info">
+                                Jl. Kramat Raya No. 49, Senen, Jakarta Pusat, 10430 <br>
+                                Telp. 0838-9606-5344 | Email: lpumkmpwmjakarta@gmail.com<br>
+                                Jakarta Pusat 10430
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="document-page">
+            <div class="document-title">DOKUMEN NIB</div>
+
+            @php
+            $document = collect($documents)->firstWhere('label', 'NIB');
+            @endphp
+
+            <div class="document-item-single">
+                @if($document)
+                @if($document['is_image'])
+                <img src="data:{{ $document['type'] }};base64,{{ base64_encode(file_get_contents($document['path'])) }}" class="document-image-single" alt="{{ $document['original_name'] }}">
+                @elseif($document['is_pdf'])
+                <div class="pdf-preview-single">
+                    <iframe src="data:application/pdf;base64,{{ base64_encode(file_get_contents($document['path'])) }}#toolbar=0" style="width:100%;height:600px;"></iframe>
+                </div>
+                @else
+                <div class="unsupported-format">
+                    Format tidak didukung: {{ $document['type'] }}
+                </div>
+                @endif
+
+                <div class="file-info-single">
+                    Nama File: {{ $document['original_name'] }}
+                </div>
+                @else
+                <div class="missing-document-single">
+                    Dokumen NIB tidak tersedia
+                </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div class="notes">LPUMKM Muhammadiyah Jakarta</div>
+            </div>
+            <div class="footer-center">
+                <span class="page-number"></span>
+            </div>
+            <div class="footer-right">
+                <div class="notes">LPUMKM Muhammadiyah Jakarta</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Halaman 5: Dokumen Tempat Usaha -->
+    <div class="page">
+        <div class="letterhead">
+            <table width="100%">
+                <tr>
+                    <th width="20%"><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/Logo.png'))) }}" width="100"></th>
+                    <td>
+                        <div class="header-column">
+                            <h1 class="header-title">dokumen resmi</h1>
+                            <h2 class="header-subtitle">LP UMKM Muhammadiyah Jakarta</h2>
+                            <p class="header-info">
+                                Jl. Kramat Raya No. 49, Senen, Jakarta Pusat, 10430 <br>
+                                Telp. 0838-9606-5344 | Email: lpumkmpwmjakarta@gmail.com<br>
+                                Jakarta Pusat 10430
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="document-page">
+            <div class="document-title">DOKUMEN TEMPAT USAHA</div>
+
+            @php
+            $document = collect($documents)->firstWhere('label', 'Tempat Usaha');
+            @endphp
+
+            <div class="document-item-single">
+                @if($document)
+                @if($document['is_image'])
+                <img src="data:{{ $document['type'] }};base64,{{ base64_encode(file_get_contents($document['path'])) }}" class="document-image-single" alt="{{ $document['original_name'] }}">
+                @elseif($document['is_pdf'])
+                <div class="pdf-preview-single">
+                    <iframe src="data:application/pdf;base64,{{ base64_encode(file_get_contents($document['path'])) }}#toolbar=0" style="width:100%;height:600px;"></iframe>
+                </div>
+                @else
+                <div class="unsupported-format">
+                    Format tidak didukung: {{ $document['type'] }}
+                </div>
+                @endif
+
+                <div class="file-info-single">
+                    Nama File: {{ $document['original_name'] }}
+                </div>
+                @else
+                <div class="missing-document-single">
+                    Dokumen Tempat Usaha tidak tersedia
+                </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div class="notes">LPUMKM Muhammadiyah Jakarta</div>
+            </div>
+            <div class="footer-center">
+                <span class="page-number"></span>
+            </div>
+            <div class="footer-right">
+                <div class="notes">LPUMKM Muhammadiyah Jakarta</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Halaman 6: Dokumen Produk -->
+    <div class="page">
+        <div class="letterhead">
+            <table width="100%">
+                <tr>
+                    <th width="20%"><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/Logo.png'))) }}" width="100"></th>
+                    <td>
+                        <div class="header-column">
+                            <h1 class="header-title">dokumen resmi</h1>
+                            <h2 class="header-subtitle">LP UMKM Muhammadiyah Jakarta</h2>
+                            <p class="header-info">
+                                Jl. Kramat Raya No. 49, Senen, Jakarta Pusat, 10430 <br>
+                                Telp. 0838-9606-5344 | Email: lpumkmpwmjakarta@gmail.com<br>
+                                Jakarta Pusat 10430
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="document-page">
+            <div class="document-title">DOKUMEN PRODUK</div>
+
+            @php
+            $document = collect($documents)->firstWhere('label', 'Produk');
+            @endphp
+
+            <div class="document-item-single">
+                @if($document)
+                @if($document['is_image'])
+                <img src="data:{{ $document['type'] }};base64,{{ base64_encode(file_get_contents($document['path'])) }}" class="document-image-single" alt="{{ $document['original_name'] }}">
+                @elseif($document['is_pdf'])
+                <div class="pdf-preview-single">
+                    <iframe src="data:application/pdf;base64,{{ base64_encode(file_get_contents($document['path'])) }}#toolbar=0" style="width:100%;height:600px;"></iframe>
+                </div>
+                @else
+                <div class="unsupported-format">
+                    Format tidak didukung: {{ $document['type'] }}
+                </div>
+                @endif
+
+                <div class="file-info-single">
+                    Nama File: {{ $document['original_name'] }}
+                </div>
+                @else
+                <div class="missing-document-single">
+                    Dokumen Produk tidak tersedia
+                </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div class="notes">LPUMKM Muhammadiyah Jakarta</div>
+            </div>
+            <div class="footer-center">
+                <span class="page-number"></span>
+            </div>
+            <div class="footer-right">
+                <div class="notes">LPUMKM Muhammadiyah Jakarta</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Halaman 7: Dokumen Sertifikat Halal -->
+    <div class="page last-page">
+        <div class="letterhead">
+            <table width="100%">
+                <tr>
+                    <th width="20%"><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/Logo.png'))) }}" width="100"></th>
+                    <td>
+                        <div class="header-column">
+                            <h1 class="header-title">dokumen resmi</h1>
+                            <h2 class="header-subtitle">LP UMKM Muhammadiyah Jakarta</h2>
+                            <p class="header-info">
+                                Jl. Kramat Raya No. 49, Senen, Jakarta Pusat, 10430 <br>
+                                Telp. 0838-9606-5344 | Email: lpumkmpwmjakarta@gmail.com<br>
+                                Jakarta Pusat 10430
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="document-page">
+            <div class="document-title">DOKUMEN SERTIFIKAT HALAL</div>
+
+            @php
+            $document = collect($documents)->firstWhere('label', 'Sertifikat Halal');
+            @endphp
+
+            <div class="document-item-single">
+                @if($document)
+                @if($document['is_image'])
+                <img src="data:{{ $document['type'] }};base64,{{ base64_encode(file_get_contents($document['path'])) }}" class="document-image-single" alt="{{ $document['original_name'] }}">
+                @elseif($document['is_pdf'])
+                <div class="pdf-preview-single">
+                    <iframe src="data:application/pdf;base64,{{ base64_encode(file_get_contents($document['path'])) }}#toolbar=0" style="width:100%;height:600px;"></iframe>
+                </div>
+                @else
+                <div class="unsupported-format">
+                    Format tidak didukung: {{ $document['type'] }}
+                </div>
+                @endif
+
+                <div class="file-info-single">
+                    Nama File: {{ $document['original_name'] }}
+                </div>
+                @else
+                <div class="missing-document-single">
+                    Dokumen Sertifikat Halal tidak tersedia
+                </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-left">
+                <div class="notes">LPUMKM Muhammadiyah Jakarta</div>
+            </div>
             <div class="footer-center">
                 <span class="page-number"></span>
             </div>
