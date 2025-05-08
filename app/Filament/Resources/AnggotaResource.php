@@ -133,7 +133,8 @@ class AnggotaResource extends Resource
                                     'Jakarta Barat' => 'JAKARTA BARAT',
                                     'Jakarta Timur' => 'JAKARTA TIMUR',
                                     'Jakarta Pusat' => 'JAKARTA PUSAT',
-                                    ])->required(),
+                                    ])->required()
+                                    ->native(false),
         
                         ]),
                         
@@ -196,7 +197,7 @@ class AnggotaResource extends Resource
                                     'Jakarta Barat' => 'JAKARTA BARAT',
                                     'Jakarta Timur' => 'JAKARTA TIMUR',
                                     'Jakarta Pusat' => 'JAKARTA PUSAT',
-                                ])->required(),
+                                ])->required()->native(false),
 
                         
                     ]),
@@ -208,7 +209,8 @@ class AnggotaResource extends Resource
                     'KULINER' => 'KULINER',
                     'FASYEN DAN AKSESORI' => 'FASYEN DAN AKSESORI',    
                     'PRODUK KECANTIKAN' => 'PRODUK KECANTIKAN',
-                ]),
+                    'JASA' => 'JASA',
+                ])->native(false),
 
                 TextInput::make('Jenis_Produk')->label('Jenis Produk')->required(),
                 TextInput::make('Lama_Berusaha')->label('Lama Berusaha (tahun)')->numeric()->required(),
@@ -218,7 +220,7 @@ class AnggotaResource extends Resource
                     'online dan offline' => 'Online dan Ofline',
                     'lainnya' => 'Lainnya',
                 ])
-                ->default('online dan offline') // Menjaga nilai saat edit
+                ->native(false) // Menjaga nilai saat edit
                  ->required(),
                  TextInput::make('Jumlah_Cabang')->label('Jumlah Cabang')->numeric()->minValue(0) ->default(0),
             ]),
