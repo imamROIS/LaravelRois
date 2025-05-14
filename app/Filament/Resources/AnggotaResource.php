@@ -99,8 +99,11 @@ class AnggotaResource extends Resource
 
                     Forms\Components\Section::make('Alamat Tinggal')->extraAttributes([
                         'style' => '
+                            margin-top: 20px;
+                            margin-bottom: 100px;
                             filter: drop-shadow(0 0 0.5rem #052e16);                    
                             background-color: #22c55e;
+                            
                             
                             
                             border-radius: 10px;
@@ -288,7 +291,15 @@ class AnggotaResource extends Resource
             ->sortable()
             ->searchable()
             ->toggleable()
-            ->description(fn ($record) => $record->Email ?? ''),
+            ->description(fn ($record) => $record->Email ?? '')
+            ->tooltip(fn ($record) => 
+        "Status Dokumen:\n" .
+        "KTP: " . ($record->Dokumen_KTP ? '✅' : '❌') . "\n" .
+        "NIB: " . ($record->Dokumen_NIB ? '✅' : '❌') . "\n" .
+        "Tempat Usaha: " . ($record->Foto_Tempat_Usaha ? '✅' : '❌') . "\n" .
+        "Sertifikat Halal: " . ($record->Dokumen_Sertifikat_Halal ? '✅' : '❌') . "\n" .
+        "Foto Produk: " . ($record->Foto_Produk ? '✅' : '❌')
+    ),
             TextColumn::make('No_KTP_NIK')                
             ->label('No KTP/NIK')
             ->sortable()
@@ -320,7 +331,7 @@ class AnggotaResource extends Resource
             ->sortable()
             ->numeric()
             ->money('IDR')
-            ->toggleable(),
+            ->toggleable(isToggledHiddenByDefault: true),
             TextColumn::make('created_at')                
             ->label('Tanggal Dibuat')
             ->dateTime()
@@ -341,10 +352,12 @@ class AnggotaResource extends Resource
         ->actions([
             Tables\Actions\EditAction::make(),
             Tables\Actions\ViewAction::make(),
+            
+            
+            
             Tables\Actions\Action::make('export-pdf')
-    ->label('Export PDF')
-    
-    ->url(fn (Anggota $record) => route('export.anggota.pdf', $record)),     
+                ->label('Export PDF')    
+                ->url(fn (Anggota $record) => route('export.anggota.pdf', $record)),     
 
             
             

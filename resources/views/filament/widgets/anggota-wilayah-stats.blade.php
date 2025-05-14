@@ -1,6 +1,3 @@
-
-
-
 <div class=" col-span-full space-y-4">
     <!-- Search Form -->
     <div class="flex space-x-4 mb-4">
@@ -17,23 +14,23 @@
                 <input wire:model.debounce.300ms="search" wire:keydown.enter="refreshData" type="text" id="search" placeholder="Search..." class="flex-grow border-gray-300 rounded-r-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
         </div>
-        
+
         <div class="mt-6">
             <button wire:click="refreshData" class="search-button">
                 Search
             </button>
-            
+
         </div>
 
     </div>
     <!-- Filter Form -->
-    <div  class="flex space-x-4">
+    <div class="flex space-x-4">
 
 
-    
-<!-- Filter Tempat tinggal berdasarkan alamat pribadi -- START -->   
 
-{{-- 
+        <!-- Filter Tempat tinggal berdasarkan alamat pribadi -- START -->
+
+        {{--
         <!-- Provinsi Filter -->
         <div>
             <label for="provinsi" class="block text-sm font-medium text-gray-700">Provinsi</label>
@@ -41,63 +38,63 @@
                 <option value="">Pilih Provinsi</option>
                 @foreach ($data->unique('Provinsi_Tinggal') as $item)
                     <option value="{{ $item->Provinsi_Tinggal }}">{{ $item->Provinsi_Tinggal }}</option>
-                @endforeach
-            </select>
-        </div>
+        @endforeach
+        </select>
+    </div>
 
-        <!-- Kabupaten Filter -->
-        <div>
-            <label for="kabupaten" class="block text-sm font-medium text-gray-700">Kabupaten</label>
-            <select wire:model="kabupaten" id="kabupaten" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                <option value="">Pilih Kabupaten</option>
-                @foreach ($data->unique('Kabupaten_Tinggal') as $item)
-                    <option value="{{ $item->Kabupaten_Tinggal }}">{{ $item->Kabupaten_Tinggal }}</option>
-                @endforeach
-            </select>
-        </div> 
-         --}}
+    <!-- Kabupaten Filter -->
+    <div>
+        <label for="kabupaten" class="block text-sm font-medium text-gray-700">Kabupaten</label>
+        <select wire:model="kabupaten" id="kabupaten" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+            <option value="">Pilih Kabupaten</option>
+            @foreach ($data->unique('Kabupaten_Tinggal') as $item)
+            <option value="{{ $item->Kabupaten_Tinggal }}">{{ $item->Kabupaten_Tinggal }}</option>
+            @endforeach
+        </select>
+    </div>
+    --}}
 
-        <!-- Kecamatan Filter -->
-        <div>
-            <label for="kecamatan" class="block text-sm font-medium">Kecamatan Anggota</label>
-            <select wire:model="kecamatan" wire:change="refreshData" id="kecamatan" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                <option value="">Pilih Kecamatan</option>
-                @foreach ($data->unique('Kecamatan_Tinggal') as $item)
-                    <option value="{{ $item->Kecamatan_Tinggal }}">{{ $item->Kecamatan_Tinggal }}</option>
-                @endforeach
-            </select>
-        </div>
+    <!-- Kecamatan Filter -->
+    <div>
+        <label for="kecamatan" class="block text-sm font-medium">Kecamatan Anggota</label>
+        <select wire:model="kecamatan" wire:change="refreshData" id="kecamatan" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+            <option value="">Pilih Kecamatan</option>
+            @foreach ($data->unique('Kecamatan_Tinggal') as $item)
+            <option value="{{ $item->Kecamatan_Tinggal }}">{{ $item->Kecamatan_Tinggal }}</option>
+            @endforeach
+        </select>
+    </div>
 
-        <!-- Kelurahan Filter -->
-        <div>
-            <label for="kelurahan" class="block text-sm font-medium">Kelurahan Anggota</label>
-            <select wire:model="kelurahan" wire:change="refreshData" id="kelurahan" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                <option value="">Pilih Kelurahan</option>
-                @foreach ($data->unique('Kelurahan_Tinggal') as $item)
-                    <option value="{{ $item->Kelurahan_Tinggal }}">{{ $item->Kelurahan_Tinggal }}</option>
-                @endforeach
-            </select>
-        </div>
-        <!-- Kota Tinggal Filter -->
-        <div>
-            <label for="kotatinggal" class="block text-sm font-medium">Kota </label>
-            <select wire:model="kotatinggal" wire:change="refreshData" id="kotatinggal" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                <option value="">Pilih Kota</option>
-                @foreach ($data->unique('Kota_Tinggal') as $item)
-                    <option value="{{ $item->Kota_Tinggal }}">{{ $item->Kota_Tinggal }}</option>
-                @endforeach
-            </select>
-        </div>
+    <!-- Kelurahan Filter -->
+    <div>
+        <label for="kelurahan" class="block text-sm font-medium">Kelurahan Anggota</label>
+        <select wire:model="kelurahan" wire:change="refreshData" id="kelurahan" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+            <option value="">Pilih Kelurahan</option>
+            @foreach ($data->unique('Kelurahan_Tinggal') as $item)
+            <option value="{{ $item->Kelurahan_Tinggal }}">{{ $item->Kelurahan_Tinggal }}</option>
+            @endforeach
+        </select>
+    </div>
+    <!-- Kota Tinggal Filter -->
+    <div>
+        <label for="kotatinggal" class="block text-sm font-medium">Kota </label>
+        <select wire:model="kotatinggal" wire:change="refreshData" id="kotatinggal" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+            <option value="">Pilih Kota</option>
+            @foreach ($data->unique('Kota_Tinggal') as $item)
+            <option value="{{ $item->Kota_Tinggal }}">{{ $item->Kota_Tinggal }}</option>
+            @endforeach
+        </select>
+    </div>
 
-        <div class="invisible">
-            <label for="kelurahanusaha" class="block text-sm font-medium text-gray-700">Label Kosong</label>
-        </div>
-
-        
+    <div class="invisible">
+        <label for="kelurahanusaha" class="block text-sm font-medium text-gray-700">Label Kosong</label>
+    </div>
 
 
-<!-- Filter Tempat tinggal berdasarkan alamat USAHA -- START -->
-{{-- 
+
+
+    <!-- Filter Tempat tinggal berdasarkan alamat USAHA -- START -->
+    {{--
 <!-- Provinsi Usaha Filter -->
 <div>
     <label for="provinsiusaha" class="block text-sm font-medium text-gray-700">Provinsi Usaha</label>
@@ -105,7 +102,7 @@
         <option value="">Pilih Provinsi</option>
         @foreach ($data->unique('Provinsi_Usaha') as $item)
             <option value="{{ $item->Provinsi_Usaha }}">{{ $item->Provinsi_Usaha }}</option>
-        @endforeach
+    @endforeach
     </select>
 </div>
 
@@ -115,11 +112,11 @@
     <select wire:model="kabupatenusaha" id="kabupatenusaha" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
         <option value="">Pilih Kabupaten</option>
         @foreach ($data->unique('Kabupaten_Usaha') as $item)
-            <option value="{{ $item->Kabupaten_Usaha }}">{{ $item->Kabupaten_Usaha }}</option>
+        <option value="{{ $item->Kabupaten_Usaha }}">{{ $item->Kabupaten_Usaha }}</option>
         @endforeach
     </select>
-</div> 
- --}}
+</div>
+--}}
 
 
 <!-- Kecamatan Usaha Filter -->
@@ -128,7 +125,7 @@
     <select wire:model="kecamatanusaha" wire:change="refreshData" id="kecamatanusaha" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
         <option value="">Pilih Kecamatan</option>
         @foreach ($data->unique('Kecamatan_Usaha') as $item)
-            <option value="{{ $item->Kecamatan_Usaha }}">{{ $item->Kecamatan_Usaha }}</option>
+        <option value="{{ $item->Kecamatan_Usaha }}">{{ $item->Kecamatan_Usaha }}</option>
         @endforeach
     </select>
 </div>
@@ -139,29 +136,29 @@
     <select wire:model="kelurahanusaha" wire:change="refreshData" id="kelurahanusaha" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
         <option value="">Pilih Kelurahan</option>
         @foreach ($data->unique('Kelurahan_Usaha') as $item)
-            <option value="{{ $item->Kelurahan_Usaha }}">{{ $item->Kelurahan_Usaha }}</option>
+        <option value="{{ $item->Kelurahan_Usaha }}">{{ $item->Kelurahan_Usaha }}</option>
         @endforeach
     </select>
 </div>
 <!-- Kota Tinggal Usaha Filter -->
 <div>
-    <label for="kotatinggalusaha"  class="block text-sm font-medium">Kota Usaha </label>
+    <label for="kotatinggalusaha" class="block text-sm font-medium">Kota Usaha </label>
     <select wire:model="kotatinggalusaha" wire:change="refreshData" id="kotatinggalusaha" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
         <option value="">Pilih Kota</option>
         @foreach ($data->unique('Kota_Usaha') as $item)
-            <option value="{{ $item->Kota_Usaha }}">{{ $item->Kota_Usaha }}</option>
+        <option value="{{ $item->Kota_Usaha }}">{{ $item->Kota_Usaha }}</option>
         @endforeach
     </select>
 </div>
-    </div>
+</div>
 
 <!-- Filter Tempat tinggal berdasarkan alamat pribadi -- END -->
 
-   <!-- Tombol Reset Filter -->
+<!-- Tombol Reset Filter -->
 <section class="reset-filter-section">
-    
+
     <div>
-        <button wire:click="resetFilters"  class="reset-button" >
+        <button wire:click="resetFilters" class="reset-button">
             Reset Filter
         </button>
     </div>
@@ -172,10 +169,10 @@
     <h3 class="text-lg font-semibold ">Jumlah Anggota</h3>
     <div class="bg-white p-4 mt-2 border rounded-md shadow-md">
         <p class="text-gray-700" wire:change="refreshData">Jumlah Anggota Terpilih: <strong>{{ $data->count() }}</strong> dari total anggota: <strong>{{ $allMembersCount }}</strong>
-       
+
         </p>
-        
-        
+
+
     </div>
 
     <div class="overflow-y-auto max-h-96 border border-gray-200 rounded-lg shadow-lg">
@@ -192,29 +189,28 @@
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
                 @foreach ($data as $anggota)
-                    <tr class="hover:bg-green-50 transition-colors duration-150">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $anggota->ID_Anggota}}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Nama_Anggota}}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Nama_Usaha }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Kelurahan_Usaha }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Kelurahan_Usaha }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm">
-                            <button wire:click="showDetail({{ $anggota->id }})"
-                                class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors duration-200 flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
-                                Detail
-                            </button>
-                        </td>
-                    </tr>
+                <tr class="hover:bg-green-50 transition-colors duration-150">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $anggota->ID_Anggota}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Nama_Anggota}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Nama_Usaha }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Kelurahan_Usaha }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $anggota->Kelurahan_Usaha }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <button wire:click="showDetail({{ $anggota->id }})" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition-colors duration-200 flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Detail
+                        </button>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 
-    
+
     <!-- Pagination -->
     <div class="mt-4">
         {{ $data->links() }}
@@ -225,12 +221,12 @@
         <div class="modalpopupcontainer">
             <h2 class="text-lg font-bold mb-4">Detail Anggota</h2>
             {{-- <p><strong>Nama                 :</strong> {{ $selectedAnggota->Nama_Anggota }}</p>
-            <p><strong>Kecamatan Tinggal    :</strong> {{ $selectedAnggota->Kecamatan_Tinggal }}</p>
-            <p><strong>Kelurahan            :</strong> {{ $selectedAnggota->Kelurahan_Tinggal }}</p>
-            <p><strong>Kota                 :</strong> {{ $selectedAnggota->Kota_Tinggal }}</p>
-            <p><strong>Nama Usaha           :</strong> {{ $selectedAnggota->Nama_Usaha }}</p>
-            <p><strong>Jenis Produk         :</strong> {{ $selectedAnggota->Jenis_Produk }}</p>
-            <p><strong>Bidang Usaha         :</strong>{{ $selectedAnggota->Bidang_Usaha }}</p> --}}
+            <p><strong>Kecamatan Tinggal :</strong> {{ $selectedAnggota->Kecamatan_Tinggal }}</p>
+            <p><strong>Kelurahan :</strong> {{ $selectedAnggota->Kelurahan_Tinggal }}</p>
+            <p><strong>Kota :</strong> {{ $selectedAnggota->Kota_Tinggal }}</p>
+            <p><strong>Nama Usaha :</strong> {{ $selectedAnggota->Nama_Usaha }}</p>
+            <p><strong>Jenis Produk :</strong> {{ $selectedAnggota->Jenis_Produk }}</p>
+            <p><strong>Bidang Usaha :</strong>{{ $selectedAnggota->Bidang_Usaha }}</p> --}}
             <table class="data-tablepopup">
                 <tr>
                     <th width="">ID Anggota</th>
@@ -275,9 +271,60 @@
                 </tr>
             </table>
 
-    
-            <button wire:click="closeModal"
-                class="close-button-popup">
+            <!-- Kolom Kanan - Status Dokumen -->
+            <div>
+                <h3 class="font-bold mb-3 text-lg">Status Dokumen</h3>
+
+                <!-- Status Dokumen -->
+                <div class="dokumen-status-grid mb-6">
+                    @foreach([
+                    'KTP' => $selectedAnggota->Dokumen_KTP,
+                    'NIB' => $selectedAnggota->Dokumen_NIB,
+                    'Foto Tempat Usaha' => $selectedAnggota->Foto_Tempat_Usaha,
+                    'Sertifikat Halal' => $selectedAnggota->Dokumen_Sertifikat_Halal,
+                    'Foto Produk' => $selectedAnggota->Foto_Produk
+                    ] as $label => $dokumen)
+                    <div class="dokumen-status-item">
+                        <div class="dokumen-status-label">{{ $label }}</div>
+                        <div class="dokumen-status-value {{ $dokumen ? 'status-ada' : 'status-tidak-ada' }}">
+                            {{ $dokumen ? '✓ Ada' : '✗ Belum Ada' }}
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+                <!-- Preview Dokumen -->
+                <h3 class="font-bold mb-3 text-lg">Preview Dokumen</h3>
+                <div class="dokumen-preview-grid">
+                    @foreach([
+                    'KTP' => $selectedAnggota->Dokumen_KTP,
+                    'NIB' => $selectedAnggota->Dokumen_NIB,
+                    'Tempat Usaha' => $selectedAnggota->Foto_Tempat_Usaha,
+                    'Sertifikat Halal' => $selectedAnggota->Dokumen_Sertifikat_Halal,
+                    'Produk' => $selectedAnggota->Foto_Produk
+                    ] as $label => $dokumen)
+                    @if($dokumen)
+                    <div class="dokumen-preview-item">
+                        <div class="dokumen-preview-label">{{ $label }}</div>
+                        <a href="{{ asset('storage/'.$dokumen) }}" target="_blank" class="dokumen-preview-thumbnail">
+                            @if(pathinfo($dokumen, PATHINFO_EXTENSION) === 'pdf')
+                            <div class="pdf-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                @else
+                                <img src="{{ asset('storage/'.$dokumen) }}" alt="{{ $label }}" loading="lazy">
+                                @endif
+                        </a>
+                    </div>
+                    @endif
+                    @endforeach
+                </div>
+            </div>
+
+
+
+            <button wire:click="closeModal" class="close-button-popup">
                 Close
             </button>
         </div>
@@ -289,19 +336,127 @@
 
 
 <style>
+    /* Dokumen Status Grid */
+    .dokumen-status-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .dokumen-status-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        background-color: #f8fafc;
+    }
+
+    .dokumen-status-label {
+        font-weight: 500;
+        color: #334155;
+    }
+
+    .dokumen-status-value {
+        font-weight: 600;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+    }
+
+    .status-ada {
+        background-color: #dcfce7;
+        color: #166534;
+    }
+
+    .status-tidak-ada {
+        background-color: #fee2e2;
+        color: #991b1b;
+    }
+
+    /* Dokumen Preview Grid */
+    .dokumen-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 1rem;
+    }
+
+    .dokumen-preview-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .dokumen-preview-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: #475569;
+    }
+
+    .dokumen-preview-thumbnail {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f1f5f9;
+        border-radius: 0.25rem;
+        overflow: hidden;
+    }
+
+    .dokumen-preview-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .pdf-icon {
+        width: 24px;
+        height: 24px;
+        color: #ef4444;
+    }
+
+    /* Close Button */
+    .close-button-popup {
+        margin-top: 1.5rem;
+        padding: 0.5rem 1rem;
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .close-button-popup:hover {
+        background-color: #2563eb;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .modalpopupcontainer {
+            grid-template-columns: 1fr;
+        }
+
+        .dokumen-status-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
     /* modalpopup  fixed inset-0 flex items-center justify-center bg-black bg-opacity-70*/
     .modalpopup {
-        z-index: 100;        
+        z-index: 100;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
-        display:flex;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
+
     .modalpopupcontainer {
         z-index: 200;
         background-color: #ffffff;
@@ -310,58 +465,66 @@
 
         border-radius: 8px;
         width: 50%;
-        height: 75%;
+        height: 100%;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.432);
     }
+
     /* Tabel Data */
     table.data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 10pt;
-        }
-        
-        .data-table th, 
-        .data-table td {
-            z-index: 10;
-            background-color: #f1f1f1
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-        }
-        
-        .data-table th {
-            z-index: 20;
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 10pt;
+    }
+
+    .data-table th,
+    .data-table td {
+        z-index: 10;
+        background-color: #f1f1f1 border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .data-table th {
+        z-index: 20;
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
     .filter-container {
         display: flex;
         align-items: center;
         gap: 8px;
         margin-bottom: 16px;
     }
+
     .filter-search {
         padding: 8px;
         border: 1px solid #ccc;
         border-radius: 8px;
         flex-grow: 1;
     }
+
     .filter-button {
         padding: 8px 16px;
-        background-color: #4f46e5; /* Indigo 600 */
+        background-color: #4f46e5;
+        /* Indigo 600 */
         color: white;
         border: none;
         border-radius: 8px;
         cursor: pointer;
         transition: background-color 0.3s;
     }
+
     .filter-button:hover {
-        background-color: #4338ca; /* Indigo 700 */
+        background-color: #4338ca;
+        /* Indigo 700 */
     }
+
     .search-button {
         padding: 8px 16px;
-        background-color: #3b82f6; /* Warna biru (blue-500) */
+        background-color: #3b82f6;
+        /* Warna biru (blue-500) */
         color: black;
         border: none;
         border-radius: 6px;
@@ -371,48 +534,61 @@
     }
 
     .search-button:hover {
-        background-color: #2563eb; /* Warna biru lebih gelap (blue-600) */
+        background-color: #2563eb;
+        /* Warna biru lebih gelap (blue-600) */
     }
 
     .search-button:focus {
-        box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.6); /* Ring focus warna biru (blue-300) */
+        box-shadow: 0 0 0 3px rgba(147, 197, 253, 0.6);
+        /* Ring focus warna biru (blue-300) */
     }
 
     .reset-filter-section {
         display: flex;
-        justify-content: flex-end; /* Taruh isi section di kanan */
+        justify-content: flex-end;
+        /* Taruh isi section di kanan */
         padding: 8px;
     }
 
     .reset-button {
-        font-weight: 600; /* font-semibold */
+        font-weight: 600;
+        /* font-semibold */
         color: rgb(0, 0, 0);
-        padding: 8px 16px; /* px-4 py-2 */
-        margin-top: 16px; /* mt-4 */
+        padding: 8px 16px;
+        /* px-4 py-2 */
+        margin-top: 16px;
+        /* mt-4 */
         background-color: rgb(145, 145, 145);
         border: none;
-        border-radius: 6px; /* rounded-md */
+        border-radius: 6px;
+        /* rounded-md */
         cursor: pointer;
         transition: background-color 0.3s, box-shadow 0.3s;
         outline: none;
     }
 
     .reset-button:hover {
-        background-color: #dc2626; /* merah lebih gelap (red-600) */
+        background-color: #dc2626;
+        /* merah lebih gelap (red-600) */
     }
 
     .reset-button:focus {
-        box-shadow: 0 0 0 3px rgba(252, 165, 165, 0.6); /* ring merah muda (red-300) */
+        box-shadow: 0 0 0 3px rgba(252, 165, 165, 0.6);
+        /* ring merah muda (red-300) */
     }
 
     .close-button-popup {
-        font-weight: 600; /* font-semibold */
+        font-weight: 600;
+        /* font-semibold */
         color: rgb(0, 0, 0);
-        padding: 8px 16px; /* px-4 py-2 */
-        margin-top: 16px; /* mt-4 */
+        padding: 8px 16px;
+        /* px-4 py-2 */
+        margin-top: 16px;
+        /* mt-4 */
         background-color: rgb(145, 145, 145);
         border: none;
-        border-radius: 6px; /* rounded-md */
+        border-radius: 6px;
+        /* rounded-md */
         cursor: pointer;
         transition: background-color 0.3s, box-shadow 0.3s;
         outline: none;
@@ -420,79 +596,78 @@
 
     .data-tablepopup {
         z-index: 300;
-        display: flex
-        background-color: #ffffff;
+        display: flex background-color: #ffffff;
         border-collapse: collapse;
         margin-top: 20px;
         font-size: 10pt;
-        
+
     }
-    .data-tablepopup th, 
-        .data-tablepopup td {
-            
-            background-color: #f1f1f1
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-        }
-        
-        .data-tablepopup th {
-            
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
+
+    .data-tablepopup th,
+    .data-tablepopup td {
+
+        background-color: #f1f1f1 border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .data-tablepopup th {
+
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
     /* Style untuk tabel */
-table {
-    border-collapse: separate;
-    border-spacing: 0;
-}
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
 
-th {
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
+    th {
+        color: rgb(0, 0, 0);
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
 
-tr:last-child td {
-    border-bottom: none;
-}
+    tr:last-child td {
+        border-bottom: none;
+    }
 
-/* Efek hover yang lebih halus */
-.hover\:bg-green-50:hover {
-    background-color: rgba(240, 253, 244, 0.7);
-}
+    /* Efek hover yang lebih halus */
+    .hover\:bg-green-50:hover {
+        background-color: rgba(240, 253, 244, 0.7);
+    }
 
-/* Tombol aksi */
-button.bg-green-500 {
-    background-color: #22c55e;
-}
+    /* Tombol aksi */
+    button.bg-green-500 {
+        background-color: #22c55e;
+    }
 
-button.bg-green-500:hover {
-    background-color: #16a34a;
-    transform: translateY(-1px);
-}
+    button.bg-green-500:hover {
+        background-color: #16a34a;
+        transform: translateY(-1px);
+    }
 
-/* Scrollbar custom */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
+    /* Scrollbar custom */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
 
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
 
-::-webkit-scrollbar-thumb {
-    background: #86efac;
-    border-radius: 4px;
-}
+    ::-webkit-scrollbar-thumb {
+        background: #86efac;
+        border-radius: 4px;
+    }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #4ade80;
-}
+    ::-webkit-scrollbar-thumb:hover {
+        background: #4ade80;
+    }
+
 </style>
-
-

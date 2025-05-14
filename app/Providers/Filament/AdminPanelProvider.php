@@ -26,6 +26,7 @@ use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugi
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Support\Facades\FilamentColor;
+use App\Filament\Pages\Auth\EditProfile;
 
 
 class AdminPanelProvider extends PanelProvider
@@ -115,6 +116,8 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogoHeight('3rem')
            
             ->favicon(asset('images/Logo.png'))
+            
+            
             // TAMBAHKAN KODE INI - Untuk mengubah warna section header
             
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
@@ -135,6 +138,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             
             ->navigation()
+            
+            
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
